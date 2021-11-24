@@ -1,0 +1,3 @@
+exchange:
+  base_url: https://openexchangerates.org/api
+  currencies_path: /currencies.json

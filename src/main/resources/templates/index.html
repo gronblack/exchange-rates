@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script th:src="@{/js/script.js}"></script>
+    <title>Exchange rates</title>
+</head>
+<body>
+<select id="currency">
+    <option value="">Выберите валюту</option>
+    <th:block th:each="currency : ${currencies}">
+        <option th:value="${currency.code}" th:text="${currency}"></option>
+    </th:block>
+</select>
+</body>
+</html>

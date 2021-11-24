@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
 
-@FeignClient(name = "openExchangeRatesClient", url = "https://openexchangerates.org/api")
-public interface OpenExchangeRatesClient {
+@FeignClient(name = "exchange", url = "${exchange.base_url}")
+public interface ExchangeClient {
 
-    @GetMapping("/currencies.json")
+    @GetMapping("${exchange.currencies_path}")
     Map<String, String> getCurrencies();
 }

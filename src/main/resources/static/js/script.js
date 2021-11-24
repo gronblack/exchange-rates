@@ -1,20 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    loadCurrencies();
-});
 
-function loadCurrencies() {
-    let currencies = JSON.parse(get("/api").responseText);
-    if (currencies && currencies.length > 0) {
-        let select = document.getElementById("currency");
-        for (let i = 0; i < currencies.length; i++) {
-            let option = document.createElement("option");
-            let currency = currencies[i];
-            option.value = currency["code"];
-            option.innerText = currency["code"] + " - " + currency["name"];
-            select.appendChild(option);
+    document.getElementById("currency").addEventListener("change", ev => {
+        let value = ev.target.value;
+        if (value) {
+            get("/api/?symbols=" + value);
         }
-    }
-}
+    })
+});
 
 function get(url) {
     let Httpreq = new XMLHttpRequest();
