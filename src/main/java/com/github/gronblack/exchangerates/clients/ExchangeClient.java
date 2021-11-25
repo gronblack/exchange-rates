@@ -1,6 +1,6 @@
 package com.github.gronblack.exchangerates.clients;
 
-import com.github.gronblack.exchangerates.dto.Rates;
+import com.github.gronblack.exchangerates.dto.Rate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +15,8 @@ public interface ExchangeClient {
     Map<String, String> getCurrencies();
 
     @GetMapping("${exchange.historical_path}/{date}")
-    Rates getRateOnDate(@PathVariable String date, @RequestParam String app_id, @RequestParam String base, @RequestParam String symbols);
+    Rate getRateOnDate(@PathVariable String date, @RequestParam String app_id, @RequestParam String base, @RequestParam String symbols);
 
     @GetMapping("${exchange.latest_path}")
-    Rates getRateLatest(@RequestParam String app_id, @RequestParam String base, @RequestParam String symbols);
+    Rate getRateLatest(@RequestParam String app_id, @RequestParam String base, @RequestParam String symbols);
 }

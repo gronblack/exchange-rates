@@ -1,17 +1,26 @@
 package com.github.gronblack.exchangerates.dto;
 
+import java.util.Map;
+
 public class Rate implements Comparable<Rate> {
     private final long timestamp;
     private final Currency baseCurrency;
-    private final Currency currency;
+    private Currency currency;
+    private double rate;
 
-    private final double rate;
-
-    public Rate(long timestamp, Currency baseCurrency, Currency currency, double rate) {
+    public Rate(long timestamp, String base, Map<String, Double> rates) throws IllegalArgumentException {
+        setCurrencyAndRate(rates);
+        baseCurrency = new Currency(base);
         this.timestamp = timestamp;
-        this.baseCurrency = baseCurrency;
-        this.currency = currency;
-        this.rate = rate;
+    }
+
+    private void setCurrencyAndRate(Map<String, Double> rates) throws IllegalArgumentException {
+        if (rates.isEmpty()) {
+            throw new IllegalArgumentException("Map is empty!");
+        }
+        Map.Entry<String, Double> currencyAndRate = rates.entrySet().iterator().next();
+        currency = new Currency(currencyAndRate.getKey());
+        rate = currencyAndRate.getValue();
     }
 
     public boolean equalsByCurrency(Rate o) {
