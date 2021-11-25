@@ -1,3 +1,7 @@
 exchange:
+  app_id: aefbfee9111d4ffa866d19e8e695f70d
+  base_currency: USD
   base_url: https://openexchangerates.org/api
   currencies_path: /currencies.json
+  latest_path: /latest.json
+  historical_path: /historical
