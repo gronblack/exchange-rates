@@ -1,4 +1,4 @@
-package com.github.gronblack.exchangerates.dto;
+package com.github.gronblack.exchangerates.dto.currency;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,7 +19,7 @@ public class Currency {
 
     @Override
     public String toString() {
-        return "Currency " + code;
+        return code;
     }
 
     @Override

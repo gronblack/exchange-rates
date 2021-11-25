@@ -3,7 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("currency").addEventListener("change", ev => {
         let value = ev.target.value;
         if (value) {
-            get("/api/?symbols=" + value);
+            let gif = JSON.parse(get("/api/?symbols=" + value).responseText);
+            if (gif.error) {
+                alert(gif.message);
+                return;
+            }
+            document.getElementById("gif").setAttribute("src", gif.url);
         }
     })
 });

@@ -1,4 +1,4 @@
-package com.github.gronblack.exchangerates.dto;
+package com.github.gronblack.exchangerates.dto.currency;
 
 import javax.validation.constraints.NotBlank;
 

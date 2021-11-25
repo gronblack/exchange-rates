@@ -5,3 +5,8 @@ exchange:
   currencies_path: /currencies.json
   latest_path: /latest.json
   historical_path: /historical
+giphy:
+  api_key: atuucIf27VBVBPx2AdhTQWzLq66EZzBC
+  base_url: api.giphy.com/v1/gifs/random
+  positive_tag: rich
+  negative_tag: broke

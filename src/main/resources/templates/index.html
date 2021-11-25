@@ -6,11 +6,14 @@
     <title>Exchange rates</title>
 </head>
 <body>
-<select id="currency">
-    <option value="">Выберите валюту</option>
-    <th:block th:each="currency : ${currencies}">
-        <option th:value="${currency.code}" th:text="${currency}"></option>
-    </th:block>
-</select>
+<p>
+    <select id="currency">
+        <option value="">Выберите валюту</option>
+        <th:block th:each="currency : ${currencies}">
+            <option th:value="${currency.code}" th:text="${currency}"></option>
+        </th:block>
+    </select>
+</p>
+<iframe id="gif" src="" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </body>
 </html>

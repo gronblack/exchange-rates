@@ -1,7 +1,7 @@
 package com.github.gronblack.exchangerates.service;
 
 import com.github.gronblack.exchangerates.clients.ExchangeClient;
-import com.github.gronblack.exchangerates.dto.NamedCurrency;
+import com.github.gronblack.exchangerates.dto.currency.NamedCurrency;
 import com.github.gronblack.exchangerates.dto.Rate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
-public class CurrencyService {
-    private static final Logger log = LoggerFactory.getLogger(CurrencyService.class);
-    private final ExchangeClient exchangeClient;
+public class ExchangeService {
+    private static final Logger log = LoggerFactory.getLogger(ExchangeService.class);
+    private final ExchangeClient client;
 
     @Value("${exchange.app_id}")
     private String appId;
@@ -24,13 +24,13 @@ public class CurrencyService {
     @Value("${exchange.base_currency}")
     private String baseCurrency;
 
-    public CurrencyService(ExchangeClient exchangeClient) {
-        this.exchangeClient = exchangeClient;
+    public ExchangeService(ExchangeClient client) {
+        this.client = client;
     }
 
     public List<NamedCurrency> getCurrencies() {
         log.info("getCurrencies");
-        return new TreeMap<>(exchangeClient.getCurrencies())
+        return new TreeMap<>(client.getCurrencies())
                 .entrySet().stream()
                 .map(entry -> new NamedCurrency(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
@@ -39,11 +39,11 @@ public class CurrencyService {
     public Rate getRateOnDate(LocalDate date, String symbols) {
         log.info("getRateOnDate {}, symbols {}", date, symbols);
         String dateString = date + ".json";
-        return exchangeClient.getRateOnDate(dateString, appId, baseCurrency, symbols);
+        return client.getRateOnDate(dateString, appId, baseCurrency, symbols);
     }
 
     public Rate getRateLatest(String symbols) {
         log.info("getRateLatest, symbols {}", symbols);
-        return exchangeClient.getRateLatest(appId, baseCurrency, symbols);
+        return client.getRateLatest(appId, baseCurrency, symbols);
     }
 }
