@@ -11,8 +11,6 @@ import java.util.Map;
 
 import static com.github.gronblack.exchangerates.TestData.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 class ExchangeServiceTest extends BaseTest {

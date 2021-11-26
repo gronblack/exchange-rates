@@ -27,6 +27,6 @@ public class GiphyService {
 
     public Gif getGif(int tag) {
         log.info("getGif with tag {}", tag);
-        return client.getRandomGif(api_key, tag < 0 ? negative_tag : positive_tag);
+        return new Gif(client.getRandomGif(api_key, tag < 0 ? negative_tag : positive_tag));
     }
 }

@@ -3,6 +3,7 @@ package com.github.gronblack.exchangerates.controller;
 import com.github.gronblack.exchangerates.BaseTest;
 import com.github.gronblack.exchangerates.clients.ExchangeClient;
 import com.github.gronblack.exchangerates.clients.GiphyClient;
+import com.github.gronblack.exchangerates.dto.Gif;
 import com.github.gronblack.exchangerates.exception.ClientsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -49,9 +50,9 @@ class ExchangeControllerTest extends BaseTest {
         @BeforeEach
         private void prepare() {
             when(giphyClient.getRandomGif(anyString(), eq(positive_tag)))
-                    .thenReturn(GIF_POSITIVE);
+                    .thenReturn(GIPHY_RESPONSE_POSITIVE);
             when(giphyClient.getRandomGif(anyString(), eq(negative_tag)))
-                    .thenReturn(GIF_NEGATIVE);
+                    .thenReturn(GIPHY_RESPONSE_NEGATIVE);
         }
 
         @Test
@@ -65,7 +66,7 @@ class ExchangeControllerTest extends BaseTest {
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                    .andExpect(GIF_MATCHER.contentJson(GIF_POSITIVE));
+                    .andExpect(GIF_MATCHER.contentJson(new Gif(GIPHY_RESPONSE_POSITIVE)));
         }
 
         @Test
@@ -79,7 +80,7 @@ class ExchangeControllerTest extends BaseTest {
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                    .andExpect(GIF_MATCHER.contentJson(GIF_NEGATIVE));
+                    .andExpect(GIF_MATCHER.contentJson(new Gif(GIPHY_RESPONSE_NEGATIVE)));
         }
     }
 }
