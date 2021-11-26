@@ -39,7 +39,7 @@ public class ExchangeController {
         try {
             Rate rateYesterday = exchangeService.getRateOnDate(LocalDate.now().minusDays(1), symbols);
             Rate rateLatest = exchangeService.getRateLatest(symbols);
-            gif = giphyService.getGif(rateLatest.compareTo(rateYesterday));
+            gif = giphyService.getGif(rateYesterday.compareTo(rateLatest));
         } catch (Exception e) {
             throw new ClientsException(e.getMessage());
         }

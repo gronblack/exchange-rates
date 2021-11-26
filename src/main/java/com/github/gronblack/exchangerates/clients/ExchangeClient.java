@@ -14,7 +14,7 @@ public interface ExchangeClient {
     @GetMapping("${exchange.currencies_path}")
     Map<String, String> getCurrencies();
 
-    @GetMapping("${exchange.historical_path}/{date}")
+    @GetMapping("${exchange.historical_path}/{date}.json")
     Rate getRateOnDate(@PathVariable String date, @RequestParam String app_id, @RequestParam String base, @RequestParam String symbols);
 
     @GetMapping("${exchange.latest_path}")

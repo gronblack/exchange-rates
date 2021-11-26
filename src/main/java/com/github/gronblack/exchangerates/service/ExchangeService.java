@@ -38,8 +38,7 @@ public class ExchangeService {
 
     public Rate getRateOnDate(LocalDate date, String symbols) {
         log.info("getRateOnDate {}, symbols {}", date, symbols);
-        String dateString = date + ".json";
-        return client.getRateOnDate(dateString, appId, baseCurrency, symbols);
+        return client.getRateOnDate(date.toString(), appId, baseCurrency, symbols);
     }
 
     public Rate getRateLatest(String symbols) {
