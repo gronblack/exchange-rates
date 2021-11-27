@@ -1,5 +1,5 @@
 # GIF по курсам валют (Exchange rates)
-Spring-Boot, Feign, JUnit
+Spring Boot, Feign, JUnit
 
 ## Описание
 Создать сервис, который обращается к сервису курсов валют, и отображает gif:
@@ -23,15 +23,28 @@ Nice to Have
 > **На Windows можно использовать [Git Bash](https://git-scm.com/download)**
 
 ### Запуск
-1. Клонировать:  
+#### 1. Клонирование
 `git clone git@github.com:gronblack/exchange-rates.git`  
 *Если нет SSH-ключа:* `git clone https://github.com/gronblack/exchange-rates.git`  
 *Или скачать на* [*странице репозитория*](https://github.com/gronblack/exchange-rates) *(кнопка Code)*
-2. В папке проекта выполнить `./gradlew bootrun`  
-*Приложение запущено, если выведена надпись* `Started ExchangeRatesApplication in [SomeDigit] seconds`.  
-*Если на шкале загрузки меньше 100%, например* `<==========---> 80% EXECUTING` - [*это нормально*](https://github.com/hamvocke/spring-testing/issues/3).
-3. Запускать [curl](#curl) в другом окне консоли или использовать UI-client (`http://localhost:8080`)
-4. Для остановки приложения в другом окне консоли в папке проекта выполнить `./gradlew -stop`
+
+#### 2. Сборка
+В папке проекта `./gradlew build -x test`  
+
+#### 3. Запуск
+&emsp; **3.1 Через Spring Boot (шаг 2 не обязателен)**  
+&emsp; В папке проекта `./gradlew bootrun`  
+&emsp; *Приложение запущено, если выведена надпись* `Started ExchangeRatesApplication in [SomeDigit] seconds`.  
+&emsp; *Если на шкале загрузки меньше 100%, например* `<==========---> 80% EXECUTING` - [*это нормально*](https://github.com/hamvocke/spring-testing/issues/3).  
+
+&emsp; **3.2 Через Docker (шаг 2 обязателен)**  
+&emsp; текст
+
+#### 4. Использование
+Запускать [curl](#curl) в другом окне консоли или использовать UI-client (`http://localhost:8080`)  
+
+#### 5. Остановка
+В другом окне консоли в папке проекта `./gradlew -stop`
 
 ### Curl
 Получить GIF для курса RUB:  
