@@ -18,3 +18,16 @@ Must Have
 - Результатом выполнения должен быть репо на GitHub с инструкцией по запуску
 Nice to Have
 - Сборка и запуск Docker контейнера с этим сервисом
+
+### Запуск
+1. Клонировать: `git clone git@github.com:gronblack/exchange-rates.git`  
+Или скачать на [странице](https://github.com/gronblack/exchange-rates) (кнопка Code)
+2. В папке проекта выполнить `./gradlew bootrun`
+3. Запускать [curl](#curl) в другом окне консоли или использовать UI-client (`http://localhost:8080`)
+
+### Curl
+Получить GIF для курса RUB:  
+`curl -s http://localhost:8080/api/?symbols=RUB`  
+
+Получить GIF для курса CAD:  
+`curl -s http://localhost:8080/api/?symbols=CAD`
