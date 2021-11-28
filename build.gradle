@@ -5,6 +5,8 @@ plugins {
 }
 
 ext {
+    set('jarDirectory', "./app/")
+    set('jarName', "app.jar")
     set('appVersion', "0.0.1")
     set('springCloudVersion', "2021.0.0-RC1")
     set('springBootVersion', "2.6.0")
@@ -25,11 +27,17 @@ jar {
     enabled = false
 }
 
-//task copyJarToBin(type: Copy) {
-//	from "./build/libs/${rootProject.name}-${appVersion}.jar"
-//	into "./"
-//}
-//build.finalizedBy(copyJarToBin)
+task copyJarToApp(type: Copy) {
+    from "./build/libs/${rootProject.name}-${appVersion}.jar"
+	into "${jarDirectory}"
+    rename { String name -> "${jarName}" }
+}
+build.finalizedBy(copyJarToApp)
+
+task cleanApp(type: Delete) {
+    delete "${jarDirectory}"
+}
+clean.finalizedBy(cleanApp);
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"

@@ -1,5 +1,5 @@
 # GIF по курсам валют (Exchange rates)
-Spring Boot, Feign, JUnit
+Spring Boot, Feign, JUnit, Docker
 
 ## Описание
 Создать сервис, который обращается к сервису курсов валют, и отображает gif:
@@ -20,31 +20,32 @@ Nice to Have
 - Сборка и запуск Docker контейнера с этим сервисом
 
 ## Решение
-> **На Windows можно использовать [Git Bash](https://git-scm.com/download)**
 
 ### Запуск
-#### 1. Клонирование
-`git clone git@github.com:gronblack/exchange-rates.git`  
-*Если нет SSH-ключа:* `git clone https://github.com/gronblack/exchange-rates.git`  
-*Или скачать на* [*странице репозитория*](https://github.com/gronblack/exchange-rates) *(кнопка Code)*
+*На Windows для шагов 1 и 2.3 и можно использовать [Git Bash](https://git-scm.com/download), для шага 2.1 - [PowerShell](https://docs.microsoft.com/ru-ru/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile#docker-build)*  
+*Все действия выполняются в директории проекта*
 
-#### 2. Сборка
-В папке проекта `./gradlew build -x test`  
+#### 1. Сборка
+&emsp; `./gradlew build -x test`  
 
-#### 3. Запуск
-&emsp; **3.1 Через Spring Boot (шаг 2 не обязателен)**  
-&emsp; В папке проекта `./gradlew bootrun`  
+#### 2. Запуск (3 варианта)
+&emsp; **2.1 Через Docker**  
+&emsp; Собрать образ:  
+&emsp; `docker build -t exchange-rates .`  
+&emsp; Запустить контейнер:  
+&emsp; `docker run -d -p 8080:8080 exchange-rates`
+
+&emsp; **2.2 JAR напрямую**  
+&emsp; ` java -jar app/app.jar`  
+
+&emsp; **2.3 Через Spring Boot (шаг [1. Сборка](#1.-Сборка) не обязателен)**  
+&emsp; `./gradlew bootrun`  
 &emsp; *Приложение запущено, если выведена надпись* `Started ExchangeRatesApplication in [SomeDigit] seconds`.  
-&emsp; *Если на шкале загрузки меньше 100%, например* `<==========---> 80% EXECUTING` - [*это нормально*](https://github.com/hamvocke/spring-testing/issues/3).  
+&emsp; *Если на шкале загрузки меньше 100%, например* `<==========---> 80% EXECUTING` - [*это нормально*](https://github.com/hamvocke/spring-testing/issues/3).
 
-&emsp; **3.2 Через Docker (шаг 2 обязателен)**  
-&emsp; текст
 
-#### 4. Использование
-Запускать [curl](#curl) в другом окне консоли или использовать UI-client (`http://localhost:8080`)  
-
-#### 5. Остановка
-В другом окне консоли в папке проекта `./gradlew -stop`
+#### 3. Использование
+&emsp; Запускать [curl](#curl) в другом окне консоли или использовать UI-client (`http://localhost:8080`)
 
 ### Curl
 Получить GIF для курса RUB:  
