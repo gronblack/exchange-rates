@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("currency").addEventListener("change", ev => {
         let value = ev.target.value;
         if (value) {
-            let gif = JSON.parse(get("/api/?symbols=" + value).responseText);
+            let gif = JSON.parse(get("/api/gifs/" + value).responseText);
             if (gif.error) {
                 alert(gif.message);
                 return;

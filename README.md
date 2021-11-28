@@ -49,7 +49,7 @@ Nice to Have
 
 ### Curl
 Получить GIF для курса RUB:  
-`curl -s http://localhost:8080/api/?symbols=RUB`  
+`curl -s http://localhost:8080/api/gifs/RUB`  
 
 Получить GIF для курса CAD:  
-`curl -s http://localhost:8080/api/?symbols=CAD`
+`curl -s http://localhost:8080/api/gifs/CAD`

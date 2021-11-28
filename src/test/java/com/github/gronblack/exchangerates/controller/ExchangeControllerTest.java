@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class ExchangeControllerTest extends BaseTest {
+    private static final String REST_URL = ExchangeController.REST_URL + '/';
 
     @MockBean
     private GiphyClient giphyClient;
@@ -34,7 +35,7 @@ class ExchangeControllerTest extends BaseTest {
         when(exchangeClient.getRateLatest(anyString(), anyString(), anyString()))
                 .thenThrow(ClientsException.class);
 
-        perform(get(REST_URL).param("symbols", String.valueOf(JPY)))
+        perform(get(REST_URL + JPY))
                 .andDo(print())
                 .andExpect(status().isForbidden());
     }
@@ -62,7 +63,7 @@ class ExchangeControllerTest extends BaseTest {
             when(exchangeClient.getRateOnDate(anyString(), anyString(), anyString(), eq(JPY.getCode())))
                     .thenReturn(JPY_RATE_YESTERDAY);
 
-            perform(get(REST_URL).param("symbols", String.valueOf(JPY)))
+            perform(get(REST_URL + JPY))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -76,7 +77,7 @@ class ExchangeControllerTest extends BaseTest {
             when(exchangeClient.getRateOnDate(anyString(), anyString(), anyString(), eq(RUB.getCode())))
                     .thenReturn(RUB_RATE_YESTERDAY);
 
-            perform(get(REST_URL).param("symbols", String.valueOf(RUB)))
+            perform(get(REST_URL + RUB))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

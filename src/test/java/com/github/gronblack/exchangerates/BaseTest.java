@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 @SpringBootTest
 @AutoConfigureMockMvc
 public abstract class BaseTest {
-    protected static final String REST_URL = "/api";
 
     @Autowired
     private MockMvc mockMvc;
